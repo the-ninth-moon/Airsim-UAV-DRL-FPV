@@ -1,0 +1,15 @@
+airsimdroneracinglab~=1.0.2
+numpy~=1.24.4
+opencv-python~=4.10.0.84
+scipy~=1.14.1
+gymnasium~=1.0.0
+sympy~=1.13.1
+tqdm~=4.67.1
+gym~=0.26.2
+matplotlib~=3.9.2
+torchvision~=0.20.1
+pillow~=11.0.0
+pandas~=2.2.3
+wandb~=0.19.6
+stable-baselines3~=2.5.0
+ultralytics~=8.3.71

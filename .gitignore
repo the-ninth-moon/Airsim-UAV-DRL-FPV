@@ -1,0 +1,13 @@
+*.pth
+*.pt
+*.h5
+*.onnx
+cvae/*.jpg
+cvae/*.jpeg
+
+# 如果模型存放在特定文件夹，忽略整个文件夹
+models/
+logs/
+logs_to_plot/
+rgb_images/
+SB3/

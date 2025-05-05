@@ -1,0 +1,30 @@
+Gate0:
+position_x_val:7.299765586853027 position_y_val:0.3999999761581421 position_z_val:-2.5799999237060547
+orientation_x_val:-0.0 orientation_y_val:0.0 orientation_z_val:0.0 orientation_w_val:1.0
+Gate1:
+position_x_val:21.42660140991211 position_y_val:4.899882793426514 position_z_val:-5.279999732971191
+orientation_x_val:-0.0 orientation_y_val:0.0 orientation_z_val:0.2588196396827698 orientation_w_val:0.9659256935119629
+Gate2:
+position_x_val:34.89984130859375 position_y_val:19.62660026550293 position_z_val:-3.379999876022339
+orientation_x_val:-0.0 orientation_y_val:0.0 orientation_z_val:0.5000009536743164 orientation_w_val:0.8660248517990112
+Gate3:
+position_x_val:46.802734375 position_y_val:30.265262603759766 position_z_val:-2.5799999237060547
+orientation_x_val:-0.0 orientation_y_val:0.0 orientation_z_val:0.08715610951185226 orientation_w_val:0.9961946606636047
+Gate4:
+position_x_val:67.33155822753906 position_y_val:21.288158416748047 position_z_val:-5.679999828338623
+orientation_x_val:0.0 orientation_y_val:-0.0 orientation_z_val:-0.5735768675804138 orientation_w_val:0.819151759147644
+Gate5:
+position_x_val:67.36531066894531 position_y_val:-7.102814674377441 position_z_val:-6.37999963760376
+orientation_x_val:0.0 orientation_y_val:-0.0 orientation_z_val:-0.6427879333496094 orientation_w_val:0.7660441994667053
+Gate6:
+position_x_val:85.30281066894531 position_y_val:-31.26518440246582 position_z_val:-2.5799999237060547
+orientation_x_val:0.0 orientation_y_val:-0.0 orientation_z_val:-0.08715534210205078 orientation_w_val:0.9961947202682495
+Gate7:
+position_x_val:123.54663848876953 position_y_val:-26.62865447998047 position_z_val:-2.5799999237060547
+orientation_x_val:-0.0 orientation_y_val:0.0 orientation_z_val:0.3420208990573883 orientation_w_val:0.9396923184394836
+Gate8:
+position_x_val:145.89991760253906 position_y_val:-4.873344421386719 position_z_val:-8.079999923706055
+orientation_x_val:-0.0 orientation_y_val:0.0 orientation_z_val:0.5000009536743164 orientation_w_val:0.8660248517990112
+Gate9:
+position_x_val:147.4684295654297 position_y_val:44.71189880371094 position_z_val:-4.579999923706055
+orientation_x_val:-0.0 orientation_y_val:0.0 orientation_z_val:0.8191527724266052 orientation_w_val:0.5735753774642944

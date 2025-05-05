@@ -1,0 +1,36 @@
+Gate0:
+position_x_val:6.499765396118164 position_y_val:0.3999999761581421 position_z_val:-2.5799999237060547
+orientation_x_val:-0.0 orientation_y_val:0.0 orientation_z_val:0.0 orientation_w_val:1.0
+Gate1:
+position_x_val:23.715194702148438 position_y_val:0.8614404201507568 position_z_val:-3.0932388305664062
+orientation_x_val:-0.0 orientation_y_val:0.0 orientation_z_val:0.08715613186359406 orientation_w_val:0.9961946606636047
+Gate2:
+position_x_val:44.31195068359375 position_y_val:11.4202241897583 position_z_val:-2.5670557022094727
+orientation_x_val:-0.0 orientation_y_val:0.0 orientation_z_val:0.4226189851760864 orientation_w_val:0.9063074588775635
+Gate3:
+position_x_val:62.81195068359375 position_y_val:13.4202241897583 position_z_val:-6.167055606842041
+orientation_x_val:-0.0 orientation_y_val:0.0 orientation_z_val:1.9973708731413353e-07 orientation_w_val:1.0
+Gate4:
+position_x_val:74.08351135253906 position_y_val:8.27359390258789 position_z_val:-13.167055130004883
+orientation_x_val:0.0 orientation_y_val:-0.0 orientation_z_val:-0.4226188063621521 orientation_w_val:0.9063075184822083
+Gate5:
+position_x_val:73.2437515258789 position_y_val:-5.29165506362915 position_z_val:-15.667055130004883
+orientation_x_val:0.0 orientation_y_val:-0.0 orientation_z_val:-0.5735764503479004 orientation_w_val:0.8191520571708679
+Gate6:
+position_x_val:82.50890350341797 position_y_val:-18.530485153198242 position_z_val:-12.967055320739746
+orientation_x_val:0.0 orientation_y_val:-0.0 orientation_z_val:-0.08715507388114929 orientation_w_val:0.9961947798728943
+Gate7:
+position_x_val:113.13874816894531 position_y_val:-12.145051002502441 position_z_val:-19.194597244262695
+orientation_x_val:0.1981080323457718 orientation_y_val:0.1387161910533905 orientation_z_val:0.1981082260608673 orientation_w_val:0.9498758316040039
+Gate8:
+position_x_val:116.57335662841797 position_y_val:30.492450714111328 position_z_val:-18.059865951538086
+orientation_x_val:0.1781487613916397 orientation_y_val:0.01995932310819626 orientation_z_val:0.845730721950531 orientation_w_val:0.5025975704193115
+Gate9:
+position_x_val:97.38546752929688 position_y_val:37.97307586669922 position_z_val:-5.546004295349121
+orientation_x_val:0.19126765429973602 orientation_y_val:-0.03504950925707817 orientation_z_val:0.8894497752189636 orientation_w_val:0.41360291838645935
+Gate10:
+position_x_val:86.6449966430664 position_y_val:56.21143341064453 position_z_val:-5.651921272277832
+orientation_x_val:-0.0 orientation_y_val:0.0 orientation_z_val:0.9659259915351868 orientation_w_val:0.25881826877593994
+Gate11:
+position_x_val:62.07195281982422 position_y_val:81.25212097167969 position_z_val:-1.8519213199615479
+orientation_x_val:-0.0 orientation_y_val:0.0 orientation_z_val:0.9659259915351868 orientation_w_val:0.25881826877593994
