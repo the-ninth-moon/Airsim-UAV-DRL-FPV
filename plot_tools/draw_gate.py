@@ -313,7 +313,7 @@ if __name__ == "__main__":
 
         # --- (可选) 添加无人机轨迹数据 ---
         # 这是一个示例轨迹数据，你需要用你实际的数据替换它
-        trajectory = parse_trajectory_info("trac_20250402-175018.txt")  # 使用你的文件名
+        trajectory = parse_trajectory_info("trac_s.txt")  # 使用你的文件名
         if trajectory is not None and not show_animation:
             plot_drone_trajectory(ax, trajectory, color='blue', marker='.')
         # 4. 设置坐标轴标签和标题

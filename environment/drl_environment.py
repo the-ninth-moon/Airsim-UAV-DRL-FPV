@@ -190,7 +190,7 @@ class DRLEnvironment(gym.Env):
         self,
             drone_name="drone_1",
         viz_image_cv2=True,
-        observation_type="images",
+        observation_type="compress",
         show_img = False,
         record_trac = False,
         record_reward = True,
@@ -291,22 +291,20 @@ class DRLEnvironment(gym.Env):
         #     dtype=np.float64
         # ) #连续
         # self.action_space = spaces.Discrete(11)
-
-
-
-        # 向量空间的定义 (19维)
-        # self.vector_observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(15,), dtype=np.float32)
-
-        # 图像空间的定义 (240, 320, 3)  假设像素值范围是 0-255，类型为 uint8
-        # self.image_observation_space = spaces.Box(low=0, high=255, shape=(240, 320, 1), dtype=np.uint8)
-
-        # # 复合观察空间：使用 Dict 组合向量和图像空间
-        # self.observation_space = spaces.Dict({
-        #     'vector': self.vector_observation_space,
-        #     'image': self.image_observation_space
-        # })
-
         self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(7+64,), dtype=np.float32)
+        if self.observation_type == "raw_image":
+            self.vector_observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(3,), dtype=np.float32)
+            #
+            # 图像空间的定义 (240, 320, 1)  假设像素值范围是 0-255，类型为 uint8
+            self.image_observation_space = spaces.Box(low=0, high=255, shape=(240, 320, 3), dtype=np.uint8)
+            #
+            # # 复合观察空间：使用 Dict 组合向量和图像空间
+            self.observation_space = spaces.Dict({
+                'vector': self.vector_observation_space,
+                'image': self.image_observation_space
+            })
+
+
 
         # 启动两个线程，用于定时调用图像和姿态更新回调函数
         self.image_callback_thread = threading.Thread(
@@ -340,7 +338,7 @@ class DRLEnvironment(gym.Env):
     def get_observation_space(self):
         if self.observation_type == "images":
             return  (3, 240, 320)
-        elif self.observation_type == "god":
+        elif self.observation_type == "compress":
             return (7+64,1)
         else:
             return (3000, 3)
@@ -754,8 +752,10 @@ class DRLEnvironment(gym.Env):
     def get_observation(self):
         if self.observation_type == "images":    
             return self.get_camera_image()[0]
-        elif self.observation_type == "god":
-            return self.get_god_state()
+        elif self.observation_type == "compress":
+            return self.get_compress_state()
+        elif self.observation_type == "raw_image":
+            return self.get_compress_state()
         else:
             return self.get_lidar_points()
 
@@ -987,7 +987,7 @@ class DRLEnvironment(gym.Env):
         # print("386 complete point",complete_points.shape) (3000, 3)
         return complete_points
 
-    def get_god_state(self):
+    def get_compress_state(self):
         # 获取无人机的状态
         self.next_gate = min(self.next_gate,len(self.gate_poses_ground_truth)-1)
         self.drone_position = self.get_position()
@@ -1025,9 +1025,15 @@ class DRLEnvironment(gym.Env):
         # state = relative_pos
         # state = np.concatenate((relative_pos,np.array([relative_yaw])))
         img,img_reward,img_state = self.final_img,self.img_reward,self.img_state
-        # state = np.concatenate((img_state,relative_pos, orientation, gate_oriention))
-
         state = np.concatenate((img_state,relative_pos))
+        # state = np.concatenate((relative_pos))
+        if self.observation_type=="raw_image":
+            state = relative_pos
+            observation = {
+                'vector': state,
+                'image': self.camer_Image
+            }
+            return observation,img_reward
         # state = np.concatenate((img_state,relative_pos))
         # state = np.concatenate((img_state,np.array([0,0,0])))
 

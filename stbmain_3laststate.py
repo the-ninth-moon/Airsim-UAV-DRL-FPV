@@ -11,9 +11,10 @@ from environment.drl_environment import DRLEnvironment
 def make_env(log_dir,show=False,record_trac=False):
     def _init():
         # env = RelativePosEnv()
-        env = DRLEnvironment(viz_image_cv2=False, observation_type="god",show_img=show,record_trac=record_trac)
+        env = DRLEnvironment(viz_image_cv2=False, observation_type="raw_image",show_img=show,record_trac=record_trac)
+        # env = DRLEnvironment(viz_image_cv2=False, observation_type="compress",show_img=show,record_trac=record_trac)
         env.init_race_environment()
-        env = frame_stack_v1(env, 4)
+        # env = frame_stack_v1(env, 4)
         env = Monitor(env, log_dir)
         return env
 
@@ -28,8 +29,8 @@ def main():
 
     # exp_name = 'PPO_4stacks_A3_S10P_Image'
     # exp_name = 'PPO_4stacks_A4Rate_S7P_S'
-    exp_name = 'PPO_4stacks_A4Rate_S7P_S_final'
-    load_path = f"models/{exp_name}/last_model"
+    exp_name = 'PPO_1stacks_A4Rate_S3P_S_raw_final_2'
+    load_path = '' #f"models/{exp_name}/last_model"
     now = datetime.now()  # current date and time
     date_time = now.strftime("%d_%m_%H")
     run_name = f"{exp_name}"
@@ -47,22 +48,54 @@ def main():
         render=True,
         verbose=True
     )
-    policy_kwargs = dict(activation_fn=torch.nn.Tanh,
-                         net_arch = dict(pi=[256,256,64], vf=[256,256,64]),
-                         ortho_init = True,
-                         log_std_init = -0.6,
-                        )
+    # Policy_kwargs 需要定义适用于 MultiInputPolicy 的网络结构
+    policy_kwargs = dict(
+        net_arch=dict(pi=[256, 256, 64], vf=[256, 256, 64]),
+        activation_fn=torch.nn.Tanh,
+        ortho_init=True,
+        log_std_init=-0.6,
+    )
     if load_path == "":
-        model = PPO("MlpPolicy", env, verbose=0, policy_kwargs=policy_kwargs,tensorboard_log=f"SB3/{run_name}/tensorboard",gamma=0.95,batch_size=50
-                    ,clip_range=0.25,n_steps=800,gae_lambda=0.95,n_epochs=6,ent_coef=0.01,learning_rate=3e-4,device="cpu")
-        # model = RecurrentPPO("MlpLstmPolicy", vec_env, verbose=0, tensorboard_log=f"SB3/{run_name}/tensorboard")
+        model = PPO(
+            "MultiInputPolicy",  # *** 关键修改：使用 MultiInputPolicy 处理 Dict 观察空间 ***
+            env,
+            verbose=0,
+            policy_kwargs=policy_kwargs,
+            tensorboard_log=f"SB3/{run_name}/tensorboard",
+            gamma=0.95,
+            batch_size=50,
+            clip_range=0.25,
+            n_steps=1000,
+            gae_lambda=0.95,
+            n_epochs=6,
+            ent_coef=0.01,
+            learning_rate=3e-4,
+            device="auto"
+        )
         print("New model is created")
     else:
-        model = PPO.load(load_path, verbose=0,tensorboard_log=f"SB3/{run_name}/tensorboard", env=env,gamma=0.95,batch_size=50
-                    ,clip_range=0.25,n_steps=1000,gae_lambda=0.95,n_epochs=3
-                         ,ent_coef=0.01,learning_rate=2e-4,device="cpu")
-        # model = RecurrentPPO.load(load_path, verbose=0, tensorboard_log=f"SB3/{run_name}/tensorboard", env=vec_env)
+        model = PPO.load(
+            load_path,
+            verbose=0,
+            tensorboard_log=f"SB3/{run_name}/tensorboard",
+            env=env,
+            device="auto"
+        )
         print('The previous model is loaded from ', load_path)
+    # policy_kwargs = dict(activation_fn=torch.nn.Tanh,
+    #                      net_arch = dict(pi=[256,256,64], vf=[256,256,64]),
+    #                      ortho_init = True,
+    #                      log_std_init = -0.6,
+    #                     )
+    # if load_path == "":
+    #     model = PPO("MlpPolicy", env, verbose=0, policy_kwargs=policy_kwargs,tensorboard_log=f"SB3/{run_name}/tensorboard",gamma=0.95,batch_size=50
+    #                 ,clip_range=0.25,n_steps=1000,gae_lambda=0.95,n_epochs=6,ent_coef=0.01,learning_rate=3e-4,device="cpu")
+    #     # model = RecurrentPPO("MlpLstmPolicy", vec_env, verbose=0, tensorboard_log=f"SB3/{run_name}/tensorboard")
+    #     print("New model is created")
+    # else:
+    #     model = PPO.load(load_path, verbose=0,tensorboard_log=f"SB3/{run_name}/tensorboard", env=env,device="auto")
+    #     # model = RecurrentPPO.load(load_path, verbose=0, tensorboard_log=f"SB3/{run_name}/tensorboard", env=vec_env)
+    #     print('The previous model is loaded from ', load_path)
     for i in range(train_timesteps // 4300):
         model.learn(total_timesteps=10100)
         print("------------模型已保存--------------")
