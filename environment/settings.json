@@ -1,62 +1,59 @@
 {
   "ClockSpeed": 1,
-  "SeeDocsAt": "https://github.com/Microsoft/AirSim/blob/master/docs/settings.md",
   "SettingsVersion": 1.2,
   "SimMode": "Multirotor",
   "Vehicles": {
     "drone_1": {
+      "VehicleType": "SimpleFlight",
+      "UseSerial": false,
+      "LockStep": true,
+      "UseTcp": true,
+      "TcpPort": 4560,
+      "ControlPortLocal": 14540,
+      "ControlPortRemote": 14580,
       "Cameras": {
         "fpv_cam": {
           "CaptureSettings": [
             {
-              "FOV_Degrees": 90,
-              "Height": 240,
+              "PublishToRos": 1,
               "ImageType": 0,
-              "Width": 320
+              "Width": 640,
+              "Height": 480,
+              "FOV_Degrees": 90,
+              "DepthOfFieldFstop": 2.8,
+              "DepthOfFieldFocalDistance": 200.0,
+              "DepthOfFieldFocalRegion": 200.0,
+              "TargetGamma": 1.5
             }
           ],
           "Pitch": 0.0,
           "Roll": 0.0,
-          "X": 0.25,
+          "X": 0.5,
           "Y": 0.0,
           "Yaw": 0.0,
-          "Z": 0.0
+          "Z": 0.1
         }
       },
-      "Pitch": 0.0,
-      "Roll": 0.0,
-      "VehicleType": "SimpleFlight",
-      "X": 0.0,
-      "Y": 0.0,
-      "Yaw": 0.0,
-      "Z": 0.0,
-	  "Sensors": {
-		  "LidarSensor1" : {
-			  "SensorType": 6,
-                    "Enabled" : true,
-                    "NumberOfChannels": 72,
-					"Range" : 12,
-                    "RotationsPerSecond": 25,
-                    "PointsPerSecond": 100000,
-                    "X": 0, "Y": 0, "Z": -1,
-                    "Roll": 0, "Pitch": 0, "Yaw" : 0,
-                    "VerticalFOVUpper": 90,
-                    "VerticalFOVLower": -50.0,
-                    "HorizontalFOVStart": -40,
-                    "HorizontalFOVEnd": 40,
-                    "DrawDebugPoints": false,
-                    "DataFrame": "SensorLocalFrame"
-		  }
-	  }
-    },
-    "drone_2": {
-      "Pitch": 0.0,
-      "Roll": 0.0,
-      "VehicleType": "SimpleFlight",
-      "X": 0.0,
-      "Y": 0.0,
-      "Yaw": 0.0,
-      "Z": 0
+      "X": 0, "Y": 0, "Z": 0, "Pitch": 0, "Roll": 0, "Yaw": 0,
+      "Sensors": {
+        "Imu": {
+          "SensorType": 2,
+          "Enabled": true,
+          "AngularRandomWalk": 1.5769e-07,
+          "GyroBiasStability": 1.9736e-06,
+          "VelocityRandomWalk": 5.5192e-04,
+          "AccelBiasStability": 1.4885e-02
+        }
+      }
     }
+  },
+  
+  "ROS": {
+    "Enabled": true,
+    "UseRosTime": true,
+    "CompressedImageTopic": false,
+    "PublishImageTopics": true,
+    "EnableTFStamping": true,    
+    "TFIntervalSec": 0.05
   }
 }

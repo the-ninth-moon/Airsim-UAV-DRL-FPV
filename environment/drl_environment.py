@@ -193,7 +193,7 @@ class DRLEnvironment(gym.Env):
         observation_type="compress",
         show_img = False,
         record_trac = False,
-        record_reward = True,
+        record_reward = False,
     ):
 
         self.drone_position = None
@@ -293,7 +293,7 @@ class DRLEnvironment(gym.Env):
         # self.action_space = spaces.Discrete(11)
         self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(7+64,), dtype=np.float32)
         if self.observation_type == "raw_image":
-            self.vector_observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(3,), dtype=np.float32)
+            self.vector_observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(7,), dtype=np.float32)
             #
             # 图像空间的定义 (240, 320, 1)  假设像素值范围是 0-255，类型为 uint8
             self.image_observation_space = spaces.Box(low=0, high=255, shape=(240, 320, 3), dtype=np.uint8)
@@ -1028,7 +1028,7 @@ class DRLEnvironment(gym.Env):
         state = np.concatenate((img_state,relative_pos))
         # state = np.concatenate((relative_pos))
         if self.observation_type=="raw_image":
-            state = relative_pos
+            # state = relative_pos
             observation = {
                 'vector': state,
                 'image': self.camer_Image
@@ -1170,7 +1170,7 @@ class DRLEnvironment(gym.Env):
                                                , yaw_mode=airsim.YawMode(is_rate=False)
                                                , vehicle_name=self.drone_name).join()
 
-    def _do_action_velocity(self, action, step_length=1.0, duration=0.2):
+    def _do_action_velocity(self, action, step_length=1.5, duration=0.2):
         state = self.airsim_client.getMultirotorState().kinematics_estimated
 
         # 解析动作（前三维速度，第四维偏航速率）

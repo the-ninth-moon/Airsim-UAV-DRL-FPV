@@ -280,7 +280,7 @@ def parse_trajectory_info(filepath="trajectory_log.txt"):
 # --- 主程序 ---
 if __name__ == "__main__":
     # 1. 解析门框信息
-    gate_file = "gate_info_s.txt"
+    gate_file = "gate.txt"
     # --- 如果 gate_info.txt 不存在，先创建它 ---
     gates = parse_gate_info(gate_file)
 
