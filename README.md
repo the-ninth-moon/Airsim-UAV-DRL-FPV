@@ -17,4 +17,5 @@
 
 可视化：
 
-![image](https://github.com/user-attachments/assets/9f06763d-a2e3-4f7b-ae52-d7badd403bfc)
+![2](https://github.com/user-attachments/assets/7d081b18-c49c-4892-8dd5-ab108a3d7641)
+
