@@ -14,3 +14,7 @@
 直接迁移到airsim挑战赛中
 
 ![lab 00_00_01--00_00_21](https://github.com/user-attachments/assets/998618a2-5d02-44f4-bfee-f0b5e202f6ab)
+
+可视化：
+
+![image](https://github.com/user-attachments/assets/9f06763d-a2e3-4f7b-ae52-d7badd403bfc)
