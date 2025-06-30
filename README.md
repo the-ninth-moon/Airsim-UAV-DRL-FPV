@@ -19,3 +19,7 @@
 
 ![2](https://github.com/user-attachments/assets/7d081b18-c49c-4892-8dd5-ab108a3d7641)
 
+
+整体框架：
+
+![image](https://github.com/user-attachments/assets/ac86788d-82bc-45ce-aa80-0f893265974a)
